@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" href="assets/ico.png" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiTask - Auth</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Administrador de Tareas</h1>
+        <div id="auth-section" class="auth-container">
+            <h2>Acceso de Usuarios</h2>
+            <form id="auth-form">
+                <input type="text" id="name-input" placeholder="Tu Nombre (para registro)" required>
+                <input type="email" id="email-input" placeholder="Correo electrónico" required>
+                <input type="password" id="password-input" placeholder="Contraseña" required>
+                <button type="submit" id="signup-button">Registrarse</button>
+                <button type="submit" id="login-button">Iniciar Sesión</button>
+            </form>
+            <p id="auth-message" class="error-message"></p>
+        </div>
+    </div>
+
+    <script type="module" src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" href="assets/ico.png" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiTask - Tarea</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestionar Tarea</h1>
+
+        <div id="task-management-section" class="app-container">
+            <div class="header-app">
+                <p>Usuario: <span id="user-email"></span></p>
+                <button id="signout-button">Cerrar Sesión</button>
+            </div>
+            
+            <form id="task-form">
+                <input type="text" id="task-title-input" placeholder="Título de la tarea..." required>
+                <textarea id="task-description-input" placeholder="Descripción de la tarea (opcional)..."></textarea>
+                <button type="submit" id="save-task-button">Guardar Tarea</button>
+                <button type="button" id="cancel-button" class="cancel-button">Cancelar</button>
+            </form>
+            <p id="task-message" class="error-message"></p>
+        </div>
+    </div>
+
+    <script type="module" src="tarea.js"></script>
+</body>
+</html>
