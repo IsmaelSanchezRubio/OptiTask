@@ -8,36 +8,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     // ---------------------------------
 
-    // --- Referencias a elementos del DOM de autenticación ---
-    const authForm = document.getElementById('auth-form');
-    const nameInput = document.getElementById('name-input'); // Nueva referencia
+    // --- Referencias a elementos del DOM de registro ---
+    const signupForm = document.getElementById('signup-form');
+    const nameInput = document.getElementById('name-input');
     const emailInput = document.getElementById('email-input');
     const passwordInput = document.getElementById('password-input');
     const signupButton = document.getElementById('signup-button');
-    const loginButton = document.getElementById('login-button');
-    const authMessage = document.getElementById('auth-message');
+    const signupMessage = document.getElementById('signup-message');
 
     /**
      * Registra un nuevo usuario con email, contraseña y nombre.
      */
-    const handleSignup = async () => {
-        authMessage.textContent = '';
-        const name = nameInput.value.trim(); // Obtener el nombre
+    const handleSignup = async (event) => {
+        // Evita el envío por defecto del formulario
+        event.preventDefault();
+
+        // Limpia cualquier mensaje anterior
+        signupMessage.textContent = '';
+
+        const name = nameInput.value.trim(); // Obtener el nombre y eliminar espacios en blanco
         const email = emailInput.value;
         const password = passwordInput.value;
 
+        // Validación básica para el nombre
         if (!name) {
-            authMessage.textContent = 'Por favor, introduce tu nombre.';
+            signupMessage.textContent = 'Por favor, introduce tu nombre.';
+            return;
+        }
+        // Validación básica para el email
+        if (!email) {
+            signupMessage.textContent = 'Por favor, introduce tu correo electrónico.';
+            return;
+        }
+        // Validación básica para la contraseña
+        if (!password) {
+            signupMessage.textContent = 'Por favor, introduce una contraseña.';
+            return;
+        }
+        if (password.length < 6) {
+            signupMessage.textContent = 'La contraseña debe tener al menos 6 caracteres.';
             return;
         }
 
+        // Realiza el registro del usuario con Supabase Auth
         const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password
         });
 
         if (error) {
-            authMessage.textContent = `Error al registrarse: ${error.message}`;
+            // Muestra un mensaje de error si el registro falla
+            signupMessage.textContent = `Error al registrarse: ${error.message}`;
             console.error('Error de registro:', error.message);
         } else if (data.user) {
             // Si el registro fue exitoso, intentar guardar el nombre en la tabla 'profiles'
@@ -49,53 +70,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]);
 
             if (profileError) {
+                // Si hay un error al guardar el perfil, se registra y se informa al usuario
                 console.error('Error al guardar el nombre en el perfil:', profileError.message);
-                authMessage.textContent = `Registro exitoso, pero hubo un error al guardar tu nombre: ${profileError.message}`;
-                // Opcional: podrías considerar eliminar el usuario recién creado si el perfil no se pudo guardar.
-                // await supabase.auth.admin.deleteUser(userId); // ¡Cuidado! Esto requiere una clave de servicio en el backend.
+                signupMessage.textContent = `Registro exitoso, pero hubo un error al guardar tu nombre: ${profileError.message}`;
+                // Opcional: podrías considerar acciones adicionales aquí si el perfil es crítico.
             } else {
                 console.log('Nombre de usuario guardado en el perfil.');
             }
 
-            // Si la confirmación por email está desactivada, redirige directamente
+            // Comprueba si se inició la sesión automáticamente (si la confirmación por email está desactivada)
             if (data.session) {
-                authMessage.textContent = `Registro exitoso y sesión iniciada para ${data.user.email}. Redirigiendo...`;
+                signupMessage.textContent = `Registro exitoso y sesión iniciada para ${data.user.email}. Redirigiendo...`;
                 console.log('Usuario registrado y logueado:', data.user);
-                window.location.href = 'index.html'; // Redirige a la página de tareas (que es index.html)
+                // Redirige a la página principal de tareas
+                window.location.href = 'index.html';
             } else {
-                authMessage.textContent = '¡Registro exitoso! Por favor, revisa tu correo para confirmar tu cuenta.';
+                // Si se requiere confirmación por email, muestra el mensaje correspondiente
+                signupMessage.textContent = '¡Registro exitoso! Por favor, revisa tu correo para confirmar tu cuenta.';
                 console.log('Registro exitoso, se requiere confirmación por email.');
             }
         }
     };
 
-    /**
-     * Inicia sesión con email y contraseña.
-     */
-    const handleLogin = async () => {
-        authMessage.textContent = '';
-        const email = emailInput.value;
-        const password = passwordInput.value;
-
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
-
-        if (error) {
-            authMessage.textContent = `Error al iniciar sesión: ${error.message}`;
-            console.error('Error de inicio de sesión:', error.message);
-        } else if (data.user) {
-            authMessage.textContent = `Sesión iniciada para ${data.user.email}. Redirigiendo...`;
-            console.log('Usuario logueado:', data.user);
-            window.location.href = 'index.html'; // Redirige a la página de tareas (que es index.html)
-        }
-    };
-
-    // --- Event Listeners de autenticación ---
-    authForm.addEventListener('submit', (e) => e.preventDefault()); // Evita envío por defecto del formulario
-    signupButton.addEventListener('click', handleSignup);
-    loginButton.addEventListener('click', handleLogin);
+    // Agrega el event listener al formulario para el evento 'submit'
+    signupForm.addEventListener('submit', handleSignup);
 
     // --- Lógica inicial de verificación de sesión ---
     // Si ya hay una sesión activa, redirige directamente a index.html

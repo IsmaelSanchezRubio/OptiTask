@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!session || error) {
             console.log('No hay sesión activa o error. Redirigiendo a autenticación...');
-            window.location.href = 'auth.html'; // Redirige si no hay sesión
+            window.location.href = 'login.html'; // Redirige si no hay sesión
             return;
         }
 
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al cerrar sesión:', error.message);
         } else {
             console.log('Sesión cerrada. Redirigiendo...');
-            window.location.href = 'auth.html'; // Redirige al cerrar sesión
+            window.location.href = 'login.html'; // Redirige al cerrar sesión
         }
     };
 
