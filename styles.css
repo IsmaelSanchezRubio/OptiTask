@@ -50,7 +50,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center; /* Centrar verticalmente también para una apariencia de app */
-    min-height: 100vh;
+    min-height: 100vh; /* Altura mínima por defecto */
     padding: var(--ios-spacing-xl) var(--ios-spacing-md); /* Relleno general */
     -webkit-font-smoothing: antialiased; /* Suavizado de fuente */
     -moz-osx-font-smoothing: grayscale; /* Suavizado de fuente para Firefox */
@@ -467,12 +467,14 @@ div a:hover {
 /* --- Media Queries para responsividad (manteniendo la sensación iOS en móvil) --- */
 @media (max-width: 768px) {
     body {
-        padding: var(--ios-spacing-lg) var(--ios-spacing-sm);
+        /* Usar dvh para la altura dinámica del viewport */
+        min-height: 100dvh; /* Intenta usar la altura dinámica del viewport */
+        min-height: 100vh; /* Fallback para navegadores que no soporten dvh */
+        padding: var(--ios-spacing-md) var(--ios-spacing-sm); /* Reducir padding general */
     }
 
     .container {
-        /* Se redujo el margen superior para que esté más pegado en pantallas medianas */
-        margin-top: var(--ios-spacing-sm); /* Antes era var(--ios-spacing-md) */
+        margin-top: 0; /* Aseguramos que el contenedor no tenga un margen superior adicional en móviles */
         padding: var(--ios-spacing-md);
         border-radius: var(--ios-border-radius-md); /* Menos redondeado en móviles */
     }
@@ -535,9 +537,15 @@ div a:hover {
 }
 
 @media (max-width: 480px) {
+    body {
+        /* Usar dvh para la altura dinámica del viewport */
+        min-height: 100dvh; /* Intenta usar la altura dinámica del viewport */
+        min-height: 100vh; /* Fallback para navegadores que no soporten dvh */
+        padding: var(--ios-spacing-sm) var(--ios-spacing-xs); /* Más ajustado en pantallas muy pequeñas */
+    }
+
     .container {
-        /* Eliminamos el margen superior para que esté completamente pegado en pantallas pequeñas */
-        margin-top: 0; /* Antes era var(--ios-spacing-sm) */
+        margin-top: 0; /* Aseguramos que el contenedor no tenga un margen superior adicional */
         padding: var(--ios-spacing-sm);
         border-radius: var(--ios-border-radius-md);
     }
