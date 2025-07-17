@@ -139,6 +139,7 @@ textarea {
     color: var(--ios-text-primary); /* Texto blanco en los campos */
     background-color: var(--ios-background-tertiary); /* Gris más oscuro para el fondo del input */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-appearance: none; /* Eliminar estilos por defecto en iOS */
 }
 
 input[type="text"]:focus,
@@ -170,6 +171,7 @@ button {
     justify-content: center;
     align-items: center;
     gap: var(--ios-spacing-xs);
+    -webkit-appearance: none; /* Eliminar estilos por defecto en iOS */
 }
 
 /* Botones Primarios (ej. Submit, Login, Signup, Save Task) */
@@ -310,6 +312,12 @@ div a:hover {
     display: none; /* Oculta el elemento por defecto */
 }
 
+/* Esto permitirá que el JavaScript controle cuándo se muestra el mensaje */
+.error-message:not(:empty) {
+    display: block; /* Muestra el mensaje solo si tiene contenido */
+}
+
+
 /* --- Lista de Tareas (simulando una TableView de iOS) --- */
 #task-list {
     list-style: none;
@@ -403,6 +411,9 @@ div a:hover {
     max-height: 3.2em; /* Aproximadamente 2 líneas de texto */
     overflow: hidden;
     text-overflow: ellipsis; /* Añade puntos suspensivos si el texto se desborda */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita a 2 líneas */
+    -webkit-box-orient: vertical;
 }
 
 /* Contenedor de botones de acción (Editar, Eliminar) */
@@ -460,7 +471,8 @@ div a:hover {
     }
 
     .container {
-        margin-top: var(--ios-spacing-md);
+        /* Se redujo el margen superior para que esté más pegado en pantallas medianas */
+        margin-top: var(--ios-spacing-sm); /* Antes era var(--ios-spacing-md) */
         padding: var(--ios-spacing-md);
         border-radius: var(--ios-border-radius-md); /* Menos redondeado en móviles */
     }
@@ -524,8 +536,9 @@ div a:hover {
 
 @media (max-width: 480px) {
     .container {
+        /* Eliminamos el margen superior para que esté completamente pegado en pantallas pequeñas */
+        margin-top: 0; /* Antes era var(--ios-spacing-sm) */
         padding: var(--ios-spacing-sm);
-        margin-top: var(--ios-spacing-sm);
         border-radius: var(--ios-border-radius-md);
     }
 
