@@ -139,7 +139,6 @@ textarea {
     color: var(--ios-text-primary); /* Texto blanco en los campos */
     background-color: var(--ios-background-tertiary); /* Gris más oscuro para el fondo del input */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    -webkit-appearance: none; /* Eliminar estilos por defecto en iOS */
 }
 
 input[type="text"]:focus,
@@ -171,7 +170,6 @@ button {
     justify-content: center;
     align-items: center;
     gap: var(--ios-spacing-xs);
-    -webkit-appearance: none; /* Eliminar estilos por defecto en iOS */
 }
 
 /* Botones Primarios (ej. Submit, Login, Signup, Save Task) */
@@ -411,9 +409,6 @@ div a:hover {
     max-height: 3.2em; /* Aproximadamente 2 líneas de texto */
     overflow: hidden;
     text-overflow: ellipsis; /* Añade puntos suspensivos si el texto se desborda */
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Limita a 2 líneas */
-    -webkit-box-orient: vertical;
 }
 
 /* Contenedor de botones de acción (Editar, Eliminar) */
