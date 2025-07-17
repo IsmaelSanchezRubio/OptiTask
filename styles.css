@@ -1,130 +1,143 @@
-/* Importación de fuentes de Google Fonts para una apariencia moderna */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+/* Importación de fuentes de Google Fonts (Poppins sigue siendo una excelente elección por su modernidad) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* --- Variables CSS para facilitar la gestión de colores y espaciados --- */
+/* --- Variables CSS inspiradas en iOS 26 --- */
 :root {
-    /* Colores primarios y de acento (manteniendo los originales para interactividad) */
-    --color-primary: #4A90E2; /* Azul vibrante */
-    --color-secondary: #5BC0BE; /* Verde azulado para acentos */
-    --color-accent: #FFD166; /* Amarillo para elementos destacados */
+    /* Paleta de colores base inspirada en iOS (tonos suaves y acentos vibrantes) */
+    --ios-blue: #007AFF; /* Azul primario de iOS */
+    --ios-blue-light: #5AC8FA; /* Azul más claro para acentos o estados */
+    --ios-red: #FF3B30; /* Rojo para acciones destructivas */
+    --ios-green: #34C759; /* Verde para éxito o acciones positivas */
+    --ios-orange: #FF9500; /* Naranja para advertencias o elementos secundarios */
 
-    /* Colores de texto y fondo - ADAPTADOS PARA TEMA OSCURO */
-    --color-background-light: #2C2F33; /* Fondo principal oscuro (gris azulado) */
-    --color-background-dark: #23272A; /* Fondo de contenedores principales (más oscuro) */
-    --color-text-dark: #E0E0E0; /* Texto principal claro */
-    --color-text-light: #FFFFFF; /* Texto blanco puro para botones/elementos con fondo oscuro */
-    --color-text-muted: #99AAB5; /* Texto secundario o deshabilitado (gris claro) */
+    /* Colores para el tema oscuro (basados en el sistema iOS Dark Mode) */
+    --ios-background-primary: #1C1C1E; /* Fondo principal oscuro (similar al gris del sistema) */
+    --ios-background-secondary: #2C2C2E; /* Fondo para agrupaciones de contenido (ej. listas, tarjetas) */
+    --ios-background-tertiary: #3A3A3C; /* Fondo para elementos interactivos o entradas */
 
-    /* Colores de estado (manteniendo los originales) */
-    --color-success: #28A745; /* Verde para éxito */
-    --color-error: #DC3545; /* Rojo para errores */
-    --color-warning: #FFC107; /* Amarillo para advertencias */
+    --ios-text-primary: #FFFFFF; /* Texto principal (blanco puro) */
+    --ios-text-secondary: #EBEBF599; /* Texto secundario o atenuado (blanco con opacidad) */
+    --ios-text-tertiary: #EBEBF54D; /* Texto aún más atenuado o placeholders */
 
-    /* Sombras - AJUSTADAS PARA TEMA OSCURO */
-    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.4);
-    --shadow-medium: 0 6px 15px rgba(0, 0, 0, 0.6);
+    --ios-separator-color: #48484A; /* Color de línea divisoria */
+    --ios-border-color: #3A3A3C; /* Color de borde para elementos interactivos */
 
-    /* Bordes - AJUSTADOS PARA TEMA OSCURO */
-    --border-radius: 8px;
-    --border-color: #4A4A4A; /* Borde oscuro */
+    /* Sombras sutiles inspiradas en iOS */
+    --ios-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --ios-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.15);
 
-    /* Espaciado */
-    --spacing-xs: 8px;
-    --spacing-sm: 12px;
-    --spacing-md: 20px;
-    --spacing-lg: 30px;
+    /* Bordes y espaciado */
+    --ios-border-radius-sm: 8px; /* Pequeño para botones/inputs */
+    --ios-border-radius-md: 12px; /* Medio para tarjetas/contenedores */
+    --ios-border-radius-lg: 16px; /* Grande para el contenedor principal */
+
+    --ios-spacing-xs: 8px;
+    --ios-spacing-sm: 12px;
+    --ios-spacing-md: 16px;
+    --ios-spacing-lg: 24px;
+    --ios-spacing-xl: 32px;
 }
 
-/* --- Estilos Generales para todo el cuerpo de la página --- */
+/* --- Estilos Generales para el cuerpo de la página (Simulando el entorno iOS) --- */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: var(--color-background-light); /* Fondo principal oscuro */
-    color: var(--color-text-dark); /* Color de texto predeterminado claro */
-    line-height: 1.6;
+    background: linear-gradient(to bottom right, var(--ios-background-primary), #0D0D0E); /* Gradiente sutil */
+    color: var(--ios-text-primary); /* Color de texto principal */
+    line-height: 1.5; /* Ajuste para mayor legibilidad */
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center; /* Centrar verticalmente también para una apariencia de app */
     min-height: 100vh;
-    padding: var(--spacing-lg) var(--spacing-sm);
+    padding: var(--ios-spacing-xl) var(--ios-spacing-md); /* Relleno general */
+    -webkit-font-smoothing: antialiased; /* Suavizado de fuente */
+    -moz-osx-font-smoothing: grayscale; /* Suavizado de fuente para Firefox */
 }
 
-/* --- Contenedor principal de la aplicación --- */
+/* --- Contenedor principal de la aplicación (La "ventana" de la app iOS) --- */
 .container {
-    background-color: var(--color-background-dark); /* Fondo de contenedores más oscuro */
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-medium); /* Sombra más pronunciada en oscuro */
-    padding: var(--spacing-lg);
-    max-width: 600px;
+    background-color: var(--ios-background-secondary); /* Fondo de la tarjeta principal */
+    border-radius: var(--ios-border-radius-lg); /* Bordes redondeados grandes */
+    box-shadow: var(--ios-shadow-medium); /* Sombra más pronunciada para profundidad */
+    padding: var(--ios-spacing-lg);
+    max-width: 500px; /* Ancho optimizado para una sensación de app móvil */
     width: 100%;
-    margin-top: var(--spacing-lg);
+    /* Efecto "frosted glass" (simulado con backdrop-filter, puede no ser compatible con todos los navegadores) */
+    backdrop-filter: blur(15px) saturate(1.8);
+    -webkit-backdrop-filter: blur(15px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Borde sutil transparente */
+    overflow: hidden; /* Asegura que los bordes redondeados se vean bien con el blur */
 }
 
-/* --- Títulos --- */
+/* --- Títulos (limpios y con peso visual) --- */
 h1 {
     text-align: center;
-    color: var(--color-primary); /* Mantiene el color primario para el título principal */
-    margin-bottom: var(--spacing-lg);
-    font-weight: 700;
+    color: var(--ios-text-primary); /* Título principal blanco */
+    margin-bottom: var(--ios-spacing-xl);
+    font-weight: 700; /* Negrita */
+    font-size: 2.2rem; /* Tamaño de fuente más grande */
+    letter-spacing: -0.02em; /* Ligero ajuste para tipografía iOS */
 }
 
 h2 {
     text-align: center;
-    color: var(--color-text-dark); /* Texto claro para subtítulos */
-    margin-bottom: var(--spacing-md);
+    color: var(--ios-text-primary);
+    margin-bottom: var(--ios-spacing-md);
     font-weight: 600;
+    font-size: 1.5rem;
 }
 
-/* --- Estilos para secciones de la aplicación (auth, task-management, app-section) --- */
+/* --- Secciones de la aplicación (Auth, Task Management) --- */
 .auth-container,
 .app-container {
-    background-color: var(--color-background-dark); /* Fondo oscuro consistente */
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color); /* Borde más sutil en oscuro */
+    background-color: var(--ios-background-secondary); /* Mismo fondo para consistencia */
+    padding: var(--ios-spacing-md);
+    border-radius: var(--ios-border-radius-md); /* Bordes redondeados medios */
+    margin-bottom: var(--ios-spacing-lg); /* Espacio entre secciones si las hubiera */
+    /* No se requiere borde adicional si el contenedor ya tiene blur */
 }
 
-/* --- Encabezado dentro de la aplicación (donde se muestra el usuario y cerrar sesión) --- */
+/* --- Encabezado dentro de la aplicación --- */
 .header-app {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-md);
-    padding-bottom: var(--spacing-sm);
-    border-bottom: 1px solid var(--border-color);
+    margin-bottom: var(--ios-spacing-lg);
+    padding-bottom: var(--ios-spacing-sm);
+    border-bottom: 1px solid var(--ios-separator-color); /* Línea divisoria iOS */
 }
 
 .header-app p {
     margin: 0;
     font-size: 1rem;
-    color: var(--color-text-muted); /* Texto atenuado claro */
+    color: var(--ios-text-secondary); /* Texto secundario */
 }
 
 #user-email {
     font-weight: 600;
-    color: var(--color-primary); /* Mantiene el color primario para el email del usuario */
+    color: var(--ios-blue); /* Color azul para el email (como un link importante) */
 }
 
-/* --- Formularios generales --- */
+/* --- Formularios generales (limpios y espaciados) --- */
 form {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-md);
+    gap: var(--ios-spacing-sm);
+    margin-top: var(--ios-spacing-md);
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea {
-    padding: var(--spacing-sm);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
+    padding: var(--ios-spacing-sm) var(--ios-spacing-md); /* Más padding horizontal */
+    border: 1px solid var(--ios-border-color); /* Borde sutil */
+    border-radius: var(--ios-border-radius-sm); /* Bordes redondeados para inputs */
     font-size: 1rem;
-    color: var(--color-text-dark); /* Texto claro en los campos */
-    background-color: #3C3F43; /* Un gris oscuro para los campos */
+    color: var(--ios-text-primary); /* Texto blanco en los campos */
+    background-color: var(--ios-background-tertiary); /* Gris más oscuro para el fondo del input */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -133,39 +146,41 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 textarea:focus {
     outline: none;
-    border-color: var(--color-primary); /* Borde primario al enfocar */
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.4); /* Sombra más visible en oscuro */
+    border-color: var(--ios-blue); /* Borde azul al enfocar */
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2); /* Sombra azul sutil al enfocar */
+    background-color: #414144; /* Ligero cambio de color al enfocar */
 }
 
 textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 100px; /* Más espacio para la descripción */
 }
 
-/* --- Botones (manteniendo los colores originales para funcionalidad) --- */
+/* --- Botones (Estilo iOS: cápsula, fondo sólido, animaciones sutiles) --- */
 button {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--ios-spacing-sm) var(--ios-spacing-md);
     border: none;
-    border-radius: var(--border-radius);
+    border-radius: var(--ios-border-radius-sm); /* Bordes redondeados uniformes */
     cursor: pointer;
     font-size: 1rem;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600; /* Semi-negrita */
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     text-align: center;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: var(--ios-spacing-xs);
 }
 
-/* Botones Primarios (por defecto) */
+/* Botones Primarios (ej. Submit, Login, Signup, Save Task) */
 button[type="submit"],
 #signup-button,
 #login-button,
 #save-task-button,
 #add-task-redirect-button {
-    background-color: var(--color-primary);
-    color: var(--color-text-light); /* Texto blanco para alto contraste */
+    background-color: var(--ios-blue);
+    color: var(--ios-text-primary);
+    box-shadow: 0 2px 5px rgba(0, 122, 255, 0.3); /* Sombra suave para botones primarios */
 }
 
 button[type="submit"]:hover,
@@ -173,115 +188,170 @@ button[type="submit"]:hover,
 #login-button:hover,
 #save-task-button:hover,
 #add-task-redirect-button:hover {
-    background-color: #3A7CCF; /* Un tono más oscuro de azul */
-    transform: translateY(-2px);
+    background-color: #006EDC; /* Azul ligeramente más oscuro */
+    transform: translateY(-1px); /* Efecto de "levantamiento" sutil */
+    box-shadow: 0 4px 8px rgba(0, 122, 255, 0.4);
 }
+
+button[type="submit"]:active,
+#signup-button:active,
+#login-button:active,
+#save-task-button:active,
+#add-task-redirect-button:active {
+    transform: translateY(0); /* Vuelve a su posición original al hacer click */
+    background-color: #005BBF; /* Azul aún más oscuro para el estado activo */
+    box-shadow: none; /* Sin sombra en estado activo para "presión" */
+}
+
 
 /* Botón de Cerrar Sesión */
 #signout-button {
-    background-color: var(--color-error); /* Rojo para cerrar sesión */
-    color: var(--color-text-light);
+    background-color: var(--ios-red); /* Rojo de iOS */
+    color: var(--ios-text-primary);
     font-size: 0.9rem;
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: var(--ios-spacing-xs) var(--ios-spacing-sm);
+    box-shadow: 0 2px 5px rgba(255, 59, 48, 0.3);
 }
 
 #signout-button:hover {
-    background-color: #C0293C; /* Rojo más oscuro */
-    transform: translateY(-2px);
+    background-color: #CC2A22; /* Rojo más oscuro */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(255, 59, 48, 0.4);
+}
+
+#signout-button:active {
+    transform: translateY(0);
+    background-color: #A6211A;
+    box-shadow: none;
 }
 
 div a{
     text-decoration: none;
-    color: var(--color-primary);
+    color: var(--ios-blue-light); /* Enlaces con azul más claro */
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
-/* Botón Cancelar */
+div a:hover {
+    color: var(--ios-blue); /* Azul primario al pasar el ratón */
+}
+
+/* Botón Cancelar (Estilo de botón secundario/transparente iOS) */
 .cancel-button {
-    background-color: #6C757D; /* Gris oscuro para cancelar */
-    color: var(--color-text-light);
+    background-color: var(--ios-background-tertiary); /* Gris oscuro para cancelar */
+    color: var(--ios-text-primary);
+    border: 1px solid var(--ios-border-color);
+    box-shadow: var(--ios-shadow-light);
 }
 
 .cancel-button:hover {
-    background-color: #5A6268;
-    transform: translateY(-2px);
-}
-
-/* Botones de Editar */
-.edit-button {
-    background-color: var(--color-secondary); /* Verde azulado para editar */
-    color: var(--color-text-light);
-    font-size: 0.85rem;
-    padding: var(--spacing-xs);
-    border-radius: var(--border-radius);
-}
-
-.edit-button:hover {
-    background-color: #4AA4A2;
+    background-color: #4A4A4D;
     transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
 }
 
-/* Botones de Eliminar */
+.cancel-button:active {
+    transform: translateY(0);
+    background-color: #3A3A3C;
+    box-shadow: none;
+}
+
+/* Botones de Editar y Eliminar (botones de acción discretos) */
+.edit-button,
 .delete-button {
-    background-color: var(--color-error); /* Rojo para eliminar */
-    color: var(--color-text-light);
-    font-size: 0.85rem;
-    padding: var(--spacing-xs);
-    border-radius: var(--border-radius);
-}
-
-.delete-button:hover {
-    background-color: #C0293C;
-    transform: translateY(-1px);
-}
-
-/* --- Mensajes de error/información --- */
-.error-message {
-    color: var(--color-error);
-    text-align: center;
-    margin-top: var(--spacing-sm);
+    background-color: transparent; /* Fondo transparente */
+    border: none;
+    color: var(--ios-blue-light); /* Azul claro para editar */
     font-size: 0.9rem;
+    padding: var(--ios-spacing-xs); /* Padding ajustado */
+    border-radius: var(--ios-border-radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
     font-weight: 500;
 }
 
-/* --- Lista de Tareas --- */
+.edit-button:hover {
+    background-color: rgba(0, 122, 255, 0.15); /* Fondo azul claro al pasar el ratón */
+    color: var(--ios-blue);
+    transform: translateY(-1px);
+}
+
+.edit-button:active {
+    background-color: rgba(0, 122, 255, 0.25);
+    transform: translateY(0);
+}
+
+.delete-button {
+    color: var(--ios-red); /* Rojo para eliminar */
+}
+
+.delete-button:hover {
+    background-color: rgba(255, 59, 48, 0.15); /* Fondo rojo claro al pasar el ratón */
+    color: #FF3B30;
+    transform: translateY(-1px);
+}
+
+.delete-button:active {
+    background-color: rgba(255, 59, 48, 0.25);
+    transform: translateY(0);
+}
+
+
+/* --- Mensajes de error/información (Estilo iOS de alerta) --- */
+.error-message {
+    color: var(--ios-red);
+    text-align: center;
+    margin-top: var(--ios-spacing-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    background-color: rgba(255, 59, 48, 0.1); /* Fondo muy sutil para el error */
+    padding: var(--ios-spacing-xs);
+    border-radius: var(--ios-border-radius-sm);
+    border: 1px solid rgba(255, 59, 48, 0.3);
+    display: none; /* Oculta el elemento por defecto */
+}
+
+/* --- Lista de Tareas (simulando una TableView de iOS) --- */
 #task-list {
     list-style: none;
     padding: 0;
-    margin-top: var(--spacing-md);
+    margin-top: var(--ios-spacing-lg);
+    background-color: var(--ios-background-tertiary); /* Fondo para la lista */
+    border-radius: var(--ios-border-radius-md); /* Bordes redondeados para la lista */
+    overflow: hidden; /* Para que los bordes redondeados se apliquen bien */
 }
 
 #task-list li {
-    background-color: #2F3136; /* Fondo de lista ligeramente diferente al del contenedor */
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    margin-bottom: var(--spacing-sm);
-    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: transparent; /* El color de fondo lo da el padre */
+    border-bottom: 1px solid var(--ios-separator-color); /* Separador sutil */
+    padding: var(--ios-spacing-sm) var(--ios-spacing-md);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: var(--spacing-sm);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    gap: var(--ios-spacing-sm);
+    transition: background-color 0.2s ease;
+}
+
+#task-list li:last-child {
+    border-bottom: none; /* Eliminar el borde inferior del último elemento */
 }
 
 #task-list li:hover {
-    box-shadow: var(--shadow-light);
-    border-color: var(--color-primary); /* Borde primario al pasar el ratón */
+    background-color: rgba(255, 255, 255, 0.05); /* Ligero hover effect */
 }
 
 /* Estilos para tareas completadas */
 #task-list li.completed {
-    background-color: #3C3F43; /* Fondo más oscuro y atenuado para completadas */
-    border-color: #5A5A5A;
-    opacity: 0.7; /* Ligeramente más transparente */
+    background-color: rgba(255, 255, 255, 0.03); /* Fondo más atenuado para completadas */
+    opacity: 0.8; /* Ligeramente más transparente */
 }
 
 #task-list li.completed .task-title {
     text-decoration: line-through;
-    color: var(--color-text-muted); /* Texto atenuado para completadas */
+    color: var(--ios-text-secondary); /* Texto atenuado para completadas */
 }
 
 #task-list li.completed .task-description {
-    color: var(--color-text-muted);
+    color: var(--ios-text-tertiary);
     font-style: italic;
 }
 
@@ -291,18 +361,24 @@ div a{
     align-items: center;
     flex-grow: 1;
     cursor: pointer;
-    padding: var(--spacing-xs) 0;
+    padding: var(--ios-spacing-xs) 0;
 }
 
-/* Icono de Check */
+/* Icono de Check (simulando el toggle de iOS) */
 .task-check-toggle {
-    margin-right: var(--spacing-sm);
-    font-size: 1.3rem;
-    color: var(--color-primary); /* Mantiene el color primario */
+    margin-right: var(--ios-spacing-sm);
+    font-size: 1.5rem; /* Icono más grande */
+    color: var(--ios-text-secondary); /* Color por defecto, como un checkbox vacío */
+    transition: color 0.2s ease;
 }
 
-#task-list li.completed .task-check-toggle .fa-circle-check {
-    color: var(--color-success); /* Verde para el check completado */
+#task-list li.completed .task-check-toggle {
+    color: var(--ios-green); /* Verde para el check completado */
+}
+
+#task-list li .task-check-toggle .fa-circle,
+#task-list li .task-check-toggle .fa-circle-check {
+    transition: transform 0.2s ease; /* Animación de escala al cambiar */
 }
 
 /* Contenido del texto de la tarea (título y descripción) */
@@ -310,128 +386,161 @@ div a{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    white-space: normal; /* Permite que el texto se ajuste */
+    word-wrap: break-word; /* Rompe palabras largas */
 }
 
 .task-title {
-    font-weight: 600;
-    font-size: 1.1rem;
+    font-weight: 500;
+    font-size: 1.05rem;
     margin-bottom: 2px;
-    color: var(--color-text-dark); /* Asegura que el título sea claro */
+    color: var(--ios-text-primary);
 }
 
 .task-description {
     font-size: 0.85rem;
-    color: var(--color-text-muted);
-    max-height: 40px;
+    color: var(--ios-text-secondary);
+    max-height: 3.2em; /* Aproximadamente 2 líneas de texto */
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto se desborda */
 }
 
 /* Contenedor de botones de acción (Editar, Eliminar) */
 .task-actions {
     display: flex;
-    gap: var(--spacing-xs);
+    gap: var(--ios-spacing-xs);
     flex-shrink: 0;
 }
 
-/* --- Filtros de vista (Tareas Pendientes/Completadas) --- */
+/* --- Filtros de vista (Botones de segmento tipo iOS) --- */
 .view-filters {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: var(--spacing-sm);
+    gap: var(--ios-spacing-sm); /* Espacio entre los botones */
+    margin-top: var(--ios-spacing-md);
+    margin-bottom: var(--ios-spacing-lg);
+    border-bottom: 1px solid var(--ios-separator-color); /* Línea divisoria */
+    padding-bottom: var(--ios-spacing-sm);
 }
 
 .view-filters button {
-    background-color: var(--color-background-light); /* Fondo oscuro para los botones de filtro */
-    color: var(--color-text-muted);
-    border: 1px solid var(--border-color);
-    padding: var(--spacing-xs) var(--spacing-md);
+    background-color: var(--ios-background-tertiary); /* Fondo de botón de filtro */
+    color: var(--ios-text-secondary);
+    border: 1px solid var(--ios-border-color);
+    padding: var(--ios-spacing-xs) var(--ios-spacing-md);
     flex: 1;
+    border-radius: var(--ios-border-radius-sm);
+    font-weight: 500;
 }
 
 .view-filters button.active {
-    background-color: var(--color-primary); /* Mantiene el color primario cuando activo */
-    color: var(--color-text-light);
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-light);
+    background-color: var(--ios-blue); /* Azul primario cuando está activo */
+    color: var(--ios-text-primary);
+    border-color: var(--ios-blue);
+    box-shadow: 0 2px 5px rgba(0, 122, 255, 0.3);
 }
 
 .view-filters button:hover:not(.active) {
-    background-color: #3C3F43; /* Un gris más oscuro al pasar el ratón */
-    color: var(--color-primary); /* El texto toma el color primario */
-    transform: translateY(-2px);
+    background-color: #4A4A4D; /* Ligeramente más oscuro al pasar el ratón */
+    color: var(--ios-blue-light); /* El texto toma el color azul claro */
+    transform: translateY(-1px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* --- Media Queries para responsividad (sin cambios mayores, adaptados a los nuevos colores) --- */
+.view-filters button:active:not(.active) {
+    background-color: #3A3A3C;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* --- Media Queries para responsividad (manteniendo la sensación iOS en móvil) --- */
 @media (max-width: 768px) {
+    body {
+        padding: var(--ios-spacing-lg) var(--ios-spacing-sm);
+    }
+
     .container {
-        margin-top: var(--spacing-md);
-        padding: var(--spacing-md);
+        margin-top: var(--ios-spacing-md);
+        padding: var(--ios-spacing-md);
+        border-radius: var(--ios-border-radius-md); /* Menos redondeado en móviles */
     }
 
     h1 {
         font-size: 1.8rem;
+        margin-bottom: var(--ios-spacing-lg);
     }
 
     .header-app {
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--spacing-xs);
+        gap: var(--ios-spacing-xs);
+        margin-bottom: var(--ios-spacing-md);
     }
 
     #signout-button {
         width: 100%;
-        margin-top: var(--spacing-xs);
+        margin-top: var(--ios-spacing-xs);
     }
 
     #task-list li {
         flex-direction: column;
         align-items: flex-start;
-        padding: var(--spacing-sm);
+        padding: var(--ios-spacing-sm);
+    }
+
+    .task-display-area {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        justify-content: flex-start;
+        margin-bottom: var(--ios-spacing-sm);
     }
 
     .task-check-toggle {
-        margin-bottom: var(--spacing-xs);
+        margin-right: var(--ios-spacing-sm); /* Mantener espacio */
+    }
+
+    .task-content {
+        width: calc(100% - var(--ios-spacing-md) - 1.5rem); /* Ajustar el ancho del texto de la tarea */
     }
 
     .task-actions {
         width: 100%;
         justify-content: flex-end;
-        margin-top: var(--spacing-sm);
+        margin-top: var(--ios-spacing-sm);
+        gap: var(--ios-spacing-sm); /* Un poco más de espacio entre los botones de acción */
     }
 
     .edit-button,
     .delete-button {
-        flex-grow: 1;
+        flex-grow: 1; /* Hacen que ocupen el espacio equitativamente */
+        padding: var(--ios-spacing-sm);
+        font-size: 0.9rem;
     }
 
     .view-filters {
         flex-direction: column;
+        gap: var(--ios-spacing-xs);
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: var(--spacing-sm);
-        margin-top: var(--spacing-sm);
+        padding: var(--ios-spacing-sm);
+        margin-top: var(--ios-spacing-sm);
+        border-radius: var(--ios-border-radius-md);
     }
 
     h1 {
-        font-size: 1.5rem;
-        margin-bottom: var(--spacing-md);
+        font-size: 1.6rem;
+        margin-bottom: var(--ios-spacing-md);
     }
 
     button {
-        padding: var(--spacing-sm);
+        padding: var(--ios-spacing-sm);
         font-size: 0.9rem;
     }
 
     input, textarea {
         font-size: 0.9rem;
+        padding: var(--ios-spacing-xs) var(--ios-spacing-sm);
     }
 }
